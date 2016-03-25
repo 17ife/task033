@@ -1,0 +1,60 @@
+body,html,div{
+    padding:0px;
+    margin:0px;
+}
+.container{
+    width:auto;
+    height:auto;
+    position:relative;
+    margin:20px;
+}
+
+.box{
+    width:40px;
+    height:40px;
+    border:1px #708090 solid;
+    display: table-cell;
+}
+
+.box-bord{
+    width:40px;
+    height:20px;
+    border:1px #FFF solid;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.up{
+    width: 40px;
+    height: 15px;
+    background-color: #001DFF;
+}
+
+.down{
+    width: 40px;
+    height: 15px;
+    margin-top: 25px;
+    background-color: #001DFF;
+}
+
+.left{
+    width: 15px;
+    height: 40px;
+    background-color: #001DFF;
+}
+
+.right{
+    width: 15px;
+    height: 40px;
+    margin-left:25px;
+    background-color: #001DFF;
+}
+.order{
+    width:200px;
+    height:30px
+}
+.btn{
+    width:120px;
+    height:30px
+}
