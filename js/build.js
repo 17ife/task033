@@ -47,24 +47,23 @@ function changeForward(forward){
         if(window.forward>3){
             window.forward = window.forward-4;
         }
-    }
-    
-    if(forward == "left"){
+    }else if(forward == "left"){
         window.forward = window.forward-1;
         if(window.forward<0){
             window.forward = window.forward+4;
         }
-    }
-    
-    if(forward == "back"){
+    }else if(forward == "back"){
         window.forward = window.forward +2;
         if(window.forward>3){
             window.forward = window.forward-4;
         }
     }
-
-    if((point<boxs.length) && (point>0) ){
+    if((point<boxs.length) && (point>-1) ){
         setForwordColor(point);
+    }else{
+        throw{
+            err:"outofborder"
+        }
     }
 }
 
@@ -81,16 +80,14 @@ function move(){
         leftBorder.push(row*i);
         rightBorder.push(row+row*i-1);
     }    
-    console.log(leftBorder)
-    console.log(rightBorder)
-    if((point<boxs.length) && (point>0) ){
+
+    if((point<boxs.length) && (point>-1) ){
         switch(forward){
             case 0:{
                 next = point - row;
                 if(next<0){
                     next = point
                 }
-                console.log(point);
                 break;
             }
             case 2:{
@@ -102,8 +99,8 @@ function move(){
             }
             case 3:{
                 next = point - 1;
-                for (i in leftBorder){
-                    if(leftBorder[i]=== point){
+                for (var x in leftBorder){
+                    if(leftBorder[x]=== point){
                          next = point;
                     }
                 }
@@ -111,8 +108,8 @@ function move(){
             }
             case 1:{
                 next = point + 1;
-                for (i in rightBorder){
-                    if(rightBorder[i] === point){
+                for (var x in rightBorder){
+                    if(rightBorder[x] === point){
                          next = point;
                     }
                 }
@@ -121,16 +118,16 @@ function move(){
         }
     }
     window.startAt = next;
-    //console.log("from " + point +" forward "+ forward +" to " + next)
     boxs[point].style.backgroundColor = "#FFF";
     boxs[point].innerHTML = '';
     setForwordColor(next);
 }
 
 function init(){
+    //随机位置、随机方向
     var startAt = Math.ceil(Math.random() * config.row * config.column) -1,
         forwardAT = Math.random(),
-        forward = '';
+        forward = 0;
     window.startAt = startAt;
     if(forwardAT<0.25){
         forward = 0;
@@ -142,6 +139,7 @@ function init(){
         forward = 3;
     }
     window.forward = forward;
+    
     setForwordColor(window.startAt);
     
     document.getElementById("tl").addEventListener("click",function(){
